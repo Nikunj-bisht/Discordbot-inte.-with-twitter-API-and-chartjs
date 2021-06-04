@@ -19,8 +19,10 @@ client.on("message" , (message)=>{
         message.reply('Hello leader!');
 
       }else{
+
           message.reply('lawde');
-      }
+      
+        }
     
 
 });
