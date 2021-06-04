@@ -1,33 +1,35 @@
-require('dotenv').config();
-const Discord = require('discord.js');
 
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const Discord = require('discord.js');
+const {message} = require('./messagefun/messagescmd');
 // create instance of client class
 const client = new Discord.Client();
 
 
-client.on("message" , (message)=>{
+
+app.get('/wake' ,(req,res)=>{
 
 
-    if(message.author.bot === true){
-        return;
-    }
-    message.id.co
-    const name = message.author.tag.split("#");
-    
-      if(name[1] === '8566'){
 
-        message.reply('Hello leader!');
-
-      }else{
-
-          message.reply('lawde');
-      
-        }
+  client.on("message" , (mess)=>{
+message(mess,Discord);
     
 
 });
 
-
+console.log("bot");
 client.login(process.env.DISCORD_BOTTOKEN);
+
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port , () =>{
+console.log("server started");
+
+});
+
+
 
 
