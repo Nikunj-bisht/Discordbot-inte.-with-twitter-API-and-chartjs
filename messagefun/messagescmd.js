@@ -3,7 +3,7 @@ const commands = require('../commands');
 const {fetchid} = require('../utils/fetchfun');
 
 
-exports.message = (message, disco) => {
+exports.message =async (message, disco) => {
 
     if (message.author.bot === true) {
         return;
@@ -192,10 +192,50 @@ let counter = 1;
 
         console.log(name);
 
-    }else if(message){
+    }else if(message.content.includes("!quiz")){
         
-    }
 
+        const embed = new disco.MessageEmbed();
+
+        embed.setTitle("Complexity of binary search");
+        embed.setTimestamp();
+        // console.log(alltweets.body.dat);
+        //console.log(reso);
+        //  console.log(response.body);
+embed.addField('🥇'  , 'O(log n)');
+
+embed.addField('🥈'   , 'O(n)');
+embed.addField('🥉'   , 'O(n^2)');
+embed.addField( '🕓'   , 'O(nlogn)');
+const polltopic = await message.channel.send(embed);
+
+const fi = await polltopic.react('🥇');
+const f2 = await polltopic.react('🥈');
+ const f3 = await polltopic.react('🥉');
+const f4 =  await polltopic.react('🕓');
+
+
+const filter = (reaction) => reaction.emoji.name === '🥇';
+
+        const coll1 = polltopic.createReactionCollector(filter , {time:15000});
+
+const coll2 = polltopic.createReactionCollector(filter , {time:15000});
+
+const coll3 = polltopic.createReactionCollector(filter , {time:15000});
+
+const coll4 = polltopic.createReactionCollector(filter , {time:15000});
+
+
+coll1.on('collect' , collect => console.log(collect));
+coll2.on('collect' , collect => console.log(collect));
+coll3.on('collect' , collect => console.log(collect));
+coll4.on('collect' , collect => console.log(collect));
+
+
+
+
+    }
+;
     // else if (name[1] === '8566') {
 
     //     message.reply('Hello leader!');

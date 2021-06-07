@@ -11,32 +11,38 @@ const Webhook = new Discord.WebhookClient('851014931981402135' , '8HilnWNLZhq9Nm
 
 app.get('/wake' ,(req,res)=>{
 
+client.on('ready' , ()=>{
+client.user.setActivity("Porn" , {type : 'WATCHING'});
 
+})
 
   client.on("message" , (mess)=>{
     console.log('fir bot');
+    console.log(mess.author.id);
 message(mess,Discord);
     
 });
+
+
 client2.on('presenceUpdate' , (old , newmem) => {
 
 // console.log(old , newmem);
-const name = newmem.user.username;
+// const name = newmem.user.username;
 
-if(typeof old === 'undefined'){
+// if(typeof old === 'undefined'){
 
-Webhook.send(`Bye ${name} we hope you enjoyed your stay!`,{
-  username : client2.user.username
+// Webhook.send(`Bye ${name} we hope you enjoyed your stay!`,{
+//   username : client2.user.username
 
-})
-}
-else{
+// })
+// }
+// else{
 
-  Webhook.send(`Welcom back ${name}  good to see you`,{
-    username : client2.user.username
+//   Webhook.send(`Welcom back ${name}  good to see you`,{
+//     username : client2.user.username
   
-  })
-}
+//   })
+// }
 // https://discord.com/api/webhooks/851014931981402135/8HilnWNLZhq9NmOFiMm-rIo7_BfswrvJBhP8EWQOSwdu9wIMqgK1xcrlDeQge5kpqo7n
 
 // const cl = newmem.client;
