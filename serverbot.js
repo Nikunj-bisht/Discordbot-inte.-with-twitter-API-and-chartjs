@@ -4,6 +4,7 @@ const express = require('express');
 const app = express();
 const Discord = require('discord.js');
 const {message} = require('./messagefun/messagescmd');
+
 // create instance of client class
 const client = new Discord.Client();
 const client2 = new Discord.Client({ws : {intents : 'GUILD_PRESENCES'}});
@@ -17,8 +18,8 @@ client.user.setActivity("Porn" , {type : 'WATCHING'});
 })
 
   client.on("message" , (mess)=>{
-    console.log('fir bot');
-    console.log(mess.author.id);
+    // console.log('fir bot');
+    // console.log(mess.author.id);
 message(mess,Discord);
     
 });

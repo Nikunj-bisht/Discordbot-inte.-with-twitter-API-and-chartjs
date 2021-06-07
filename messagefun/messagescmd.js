@@ -1,7 +1,8 @@
 const needle = require('needle');
 const commands = require('../commands');
 const {fetchid} = require('../utils/fetchfun');
-
+const quer = require('../ques');
+const kurl = require('../khalimg/imgkhali');
 
 exports.message =async (message, disco) => {
 
@@ -197,45 +198,74 @@ let counter = 1;
 
         const embed = new disco.MessageEmbed();
 
-        embed.setTitle("Complexity of binary search");
+        embed.setTitle(quer[2].ques);
         embed.setTimestamp();
         // console.log(alltweets.body.dat);
         //console.log(reso);
         //  console.log(response.body);
-embed.addField('🥇'  , 'O(log n)');
+const r = quer[2].reaction , opt = quer[2].options , rea = quer[2].res;
 
-embed.addField('🥈'   , 'O(n)');
-embed.addField('🥉'   , 'O(n^2)');
-embed.addField( '🕓'   , 'O(nlogn)');
+for(let i=0;i<r.length ; i++){
+
+    embed.addField(r[i] , opt[i]);
+
+}
+
 const polltopic = await message.channel.send(embed);
 
-const fi = await polltopic.react('🥇');
-const f2 = await polltopic.react('🥈');
- const f3 = await polltopic.react('🥉');
-const f4 =  await polltopic.react('🕓');
+for(let i=0;i<r.length;i++){
+await polltopic.react(r[i]);
+}
 
+ // :1_: :2_: :3_: :4_: :5_: :p_number_6: :7_: :8_: :p_number_9: :10:
 
-const filter = (reaction) => reaction.emoji.name === '🥇';
+ 
+var filters = [];
+for(let i=0;i<r.length;i++){
+    const filter = (reaction, user) => reaction.emoji.name === r[i];
+filters.push(filter);
+}
 
-        const coll1 = polltopic.createReactionCollector(filter , {time:15000});
-
-const coll2 = polltopic.createReactionCollector(filter , {time:15000});
-
-const coll3 = polltopic.createReactionCollector(filter , {time:15000});
-
-const coll4 = polltopic.createReactionCollector(filter , {time:15000});
-
-
-coll1.on('collect' , collect => console.log(collect));
-coll2.on('collect' , collect => console.log(collect));
-coll3.on('collect' , collect => console.log(collect));
-coll4.on('collect' , collect => console.log(collect));
+var coll = [];
+for(let i=0;i<r.length;i++){
+    coll.push(polltopic.createReactionCollector(filters[i] , {time:20000}));
 
 
 
+}
+var map = new Map();
+var ans = "";
+for(let i=0;i<coll.length;i++){
+
+    coll[i].on('collect' , (collect,user) => {
+        message.channel.send(`${rea[i]} ${user.username}`);
+        map.set(user.username , rea[i]);
+        });
+
+}
+
+coll[0].on('end' , (collect , user) =>{
+
+   for(let[key , value] of map){
+       ans+=key + " ---> " + value+"\n";
+   }
+ message.channel.send("Poll ended");
+    message.channel.send(ans);
+    
+    });
+    
+
+
+
+
+    }else if(message.content.includes("!khali")){
+
+
+         const ma = new disco.MessageAttachment(kurl());
+         message.channel.send(ma);
 
     }
-;
+
     // else if (name[1] === '8566') {
 
     //     message.reply('Hello leader!');
