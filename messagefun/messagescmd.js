@@ -3,6 +3,9 @@ const commands = require('../commands');
 const {fetchid} = require('../utils/fetchfun');
 const quer = require('../ques');
 const kurl = require('../khalimg/imgkhali');
+const ytdl = require('ytdl-core');
+var conn;
+var dispatch;
 
 exports.message =async (message, disco) => {
 
@@ -263,6 +266,42 @@ coll[0].on('end' , (collect , user) =>{
 
          const ma = new disco.MessageAttachment(kurl());
          message.channel.send(ma);
+
+    }
+
+    else if(message.content.includes("$joinkhali")){
+
+
+conn = await message.member.voice.channel.join();
+
+dispatch = conn.play(ytdl('https://www.youtube.com/watch?v=Uvj827SqHak', { filter: 'audioonly' }));
+
+    }else if(message.content.includes("$khali")){
+
+const co = message.content.split(" ")[1];
+
+if(dispatch !== "undefined"){
+    switch(co){
+
+          
+
+        case "nikal":
+        dispatch.destroy();
+        
+        break;
+        
+        case "pause":
+        dispatch.pause();
+        break;
+        
+        case "resume":
+        
+        dispatch.resume();
+        break;
+        
+                }
+}
+      
 
     }
 

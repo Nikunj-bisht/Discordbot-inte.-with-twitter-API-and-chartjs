@@ -1,10 +1,16 @@
 
-class Prac{
+function higher(value , call){
 
-call(){
+call(Math.PI * value*value);
+
 
 }
 
-}
+const collu = (area) => {
+    console.log(area);
+    
+    
+    }
+    
+higher(5 , collu);
 
-new Prac().call();
