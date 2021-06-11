@@ -4,6 +4,7 @@ const {fetchid} = require('../utils/fetchfun');
 const quer = require('../ques');
 const kurl = require('../khalimg/imgkhali');
 const ytdl = require('ytdl-core');
+const quick = require('../quickurl/quicku');
 var conn;
 var dispatch;
 
@@ -276,7 +277,7 @@ conn = await message.member.voice.channel.join();
 
 dispatch = conn.play(ytdl('https://www.youtube.com/watch?v=Uvj827SqHak', { filter: 'audioonly' }));
 
-    }else if(message.content.includes("$khali")){
+    }else if(message.content.includes("^khali")){
 
 const co = message.content.split(" ")[1];
 
@@ -302,6 +303,20 @@ if(dispatch !== "undefined"){
                 }
 }
       
+
+    }else if(message.content.includes("^covid")){
+
+        try{
+            const qu = message.content.split(" ")[1];
+
+            const url = await quick.fetchurl(qu);
+            console.log(url);
+            message.channel.send(url);
+            
+        }catch(err){
+            console.log(err);
+            message.channel.send("Error something went wrong!");
+        }
 
     }
 

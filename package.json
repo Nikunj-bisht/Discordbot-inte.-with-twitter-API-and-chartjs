@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "ffmpeg-static": "^4.3.0",
     "needle": "^2.6.0",
+    "quickchart-js": "^1.0.8",
     "twit": "^2.2.11",
     "ytdl-core": "^4.8.2"
   }

@@ -12,7 +12,7 @@ fun:"To see tweets of a Person"
 
 },{
 
-    cmd : "$roast [username]",
+    cmd : "^covid [Deaths,Recovered,Active]",
     fun:"To see tweets of a Person"
     
 },{
